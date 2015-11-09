@@ -3,7 +3,7 @@ var assert = require('assert')
 var comb = require('@mona/combinators')
 var core = require('@mona/core')
 var strs = require('..')
-var parse = require('@mona/parse')
+var parse = require('@mona/parse').parse
 
 describe('spaces()', function () {
   it('consumes one or more whitespace characters', function () {

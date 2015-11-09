@@ -1,7 +1,7 @@
 /* global describe, it */
 var assert = require('assert')
 var strs = require('..')
-var parse = require('@mona/parse')
+var parse = require('@mona/parse').parse
 
 describe('digit()', function () {
   it('succeeds if the next token is a digit character', function () {

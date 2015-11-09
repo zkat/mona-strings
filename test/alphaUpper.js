@@ -1,7 +1,7 @@
 /* global describe, it */
 var assert = require('assert')
 var strs = require('..')
-var parse = require('@mona/parse')
+var parse = require('@mona/parse').parse
 
 describe('alphaUpper()', function () {
   it('parses one uppercase alphabetical character', function () {

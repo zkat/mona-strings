@@ -1,7 +1,7 @@
 /* global describe, it */
 var assert = require('assert')
 var strs = require('..')
-var parse = require('@mona/parse')
+var parse = require('@mona/parse').parse
 
 describe('oneOf()', function () {
   it('succeeds if the next token is present in the char bag', function () {

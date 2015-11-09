@@ -3,7 +3,7 @@ var assert = require('assert')
 var core = require('@mona/core')
 var comb = require('@mona/combinators')
 var strs = require('..')
-var parse = require('@mona/parse')
+var parse = require('@mona/parse').parse
 
 describe('text()', function () {
   it('collects one or more parser results into a string', function () {

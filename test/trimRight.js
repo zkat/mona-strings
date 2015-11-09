@@ -2,7 +2,7 @@
 var assert = require('assert')
 var comb = require('@mona/combinators')
 var strs = require('..')
-var parse = require('@mona/parse')
+var parse = require('@mona/parse').parse
 
 describe('trimRight()', function () {
   it('trims trailing whitespace only', function () {

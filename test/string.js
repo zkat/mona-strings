@@ -2,7 +2,7 @@
 var assert = require('assert')
 var comb = require('@mona/combinators')
 var strs = require('..')
-var parse = require('@mona/parse')
+var parse = require('@mona/parse').parse
 
 describe('string()', function () {
   it('succeeds if the string matches a string in the input', function () {
