@@ -1,0 +1,32 @@
+{
+  "name": "@mona/strings",
+  "version": "0.0.0",
+  "description": "String parsers for mona",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel --presets es2015 src --out-dir lib",
+    "prepublish": "npm run build",
+    "test": "standard && npm run build && mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zkat/mona-strings.git"
+  },
+  "author": "Kat Marchán <kzm@sykosomatic.org>",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/zkat/mona-strings/issues"
+  },
+  "homepage": "https://github.com/zkat/mona-strings#readme",
+  "devDependencies": {
+    "@mona/parse": "^1.0.0",
+    "babel-cli": "^6.1.2",
+    "babel-preset-es2015": "^6.1.2",
+    "mocha": "^2.3.3",
+    "standard": "^5.3.1"
+  },
+  "dependencies": {
+    "@mona/combinators": "^1.0.0",
+    "@mona/core": "^1.0.0"
+  }
+}
