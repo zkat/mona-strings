@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "description": "String parsers for mona",
   "main": "lib/index.js",
+  "files": [
+    "README.md",
+    "lib/"
+  ],
   "scripts": {
     "build": "babel --presets es2015 src --out-dir lib",
     "prepublish": "npm run build",
@@ -27,6 +31,6 @@
   },
   "dependencies": {
     "@mona/combinators": "^1.0.0",
-    "@mona/core": "^1.0.0"
+    "@mona/core": "^1.0.2"
   }
 }

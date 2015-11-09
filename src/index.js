@@ -5,7 +5,8 @@ import {
   label,
   token,
   value
-} from './core'
+} from '@mona/core'
+
 import {
   and,
   between,
@@ -17,7 +18,8 @@ import {
   range,
   sequence,
   skip
-} from './combinators'
+} from '@mona/combinators'
+
 /**
  * String-related parsers and combinators.
  *
