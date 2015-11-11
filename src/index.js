@@ -286,3 +286,13 @@ export function trimLeft (parser) {
 export function trimRight (parser) {
   return followedBy(parser, maybe(spaces()))
 }
+
+/**
+ * Parses the end of a line.
+ *
+ * @example
+ * parse(eol(), '\n') // => '\n'
+ */
+export function eol () {
+  return label(oneOf(['\n\r', '\r\n', '\n', '\r']), 'end of line')
+}
