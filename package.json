@@ -10,6 +10,7 @@
   "scripts": {
     "build": "babel --presets es2015 src --out-dir lib",
     "prepublish": "npm run build",
+    "preversion": "npm install && npm test",
     "test": "standard && npm run build && mocha --reporter spec"
   },
   "repository": {
