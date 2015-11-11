@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/zkat/mona-strings#readme",
   "devDependencies": {
-    "@mona/numbers": "^1.0.1",
+    "@mona/numbers": "^1.0.2",
     "@mona/parse": "^1.0.4",
     "babel-cli": "^6.1.2",
     "babel-preset-es2015": "^6.1.2",
