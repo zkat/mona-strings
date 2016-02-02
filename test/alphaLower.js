@@ -1,20 +1,29 @@
 /* global describe, it */
-var assert = require('assert')
+var assert = require('chai').assert
 var strs = require('..')
-var parse = require('@mona/parse').parse
+var parse = require('@mona/core').parse
+var bluebird = require('bluebird')
 
 describe('alphaLower()', function () {
   it('parses one lowercase alphabetical character', function () {
     var alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    var tests = []
     for (var i = 0; i < alphabet.length; i++) {
-      assert.equal(parse(strs.alphaLower(), alphabet.charAt(i)),
-      alphabet.charAt(i))
-      assert.throws(function () {
-        parse(strs.alphaLower(), alphabet.charAt(i).toUpperCase())
-      }, /expected lowercase alphabetical character/)
+      tests.push(
+        parse(strs.alphaLower(), alphabet.charAt(i)).then((function (i) {
+          return function (res) {
+            assert.equal(res, alphabet.charAt(i))
+          }
+        })(i)))
     }
-    assert.throws(function () {
-      parse(strs.alphaLower(), '0')
-    }, /expected lowercase alphabetical character/)
+    return bluebird.all(tests).then(function () {
+      return parse(strs.alphaLower(), '0')
+    }).then(bluebird.reject, function (e) {
+      assert.match(e.message, /expected lowercase alphabetical character/)
+    }).then(function () {
+      return parse(strs.alphaLower(), 'A')
+    }).then(bluebird.reject, function (e) {
+      assert.match(e.message, /expected lowercase alphabetical character/)
+    })
   })
 })

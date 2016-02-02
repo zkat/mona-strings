@@ -1,25 +1,37 @@
 /* global describe, it */
-var assert = require('assert')
+var assert = require('chai').assert
 var strs = require('..')
-var parse = require('@mona/parse').parse
+var parse = require('@mona/core').parse
+var reject = require('bluebird').reject
 
 describe('eol()', function () {
   it('consumes Linux-style newlines', function () {
-    assert.equal(parse(strs.eol(), '\n'), '\n')
+    return parse(strs.eol(), '\n').then(function (res) {
+      assert.equal(res, '\n')
+    })
   })
   it('consumes Windows-style newlines', function () {
-    assert.equal(parse(strs.eol(), '\r\n'), '\r\n')
+    return parse(strs.eol(), '\r\n').then(function (res) {
+      assert.equal(res, '\r\n')
+    })
   })
   it('consumes OSX-style newlines', function () {
-    assert.equal(parse(strs.eol(), '\r'), '\r')
+    return parse(strs.eol(), '\r').then(function (res) {
+      assert.equal(res, '\r')
+    })
   })
   it('consumes whatever these newlines are', function () {
-    assert.equal(parse(strs.eol(), '\n\r'), '\n\r')
+    return parse(strs.eol(), '\n\r').then(function (res) {
+      assert.equal(res, '\n\r')
+    })
   })
-  assert.throws(function () {
-    parse(strs.eol(), '')
-  }, /expected end of line/)
-  assert.throws(function () {
-    parse(strs.eol(), 'hi')
-  }, /expected end of line/)
+  it('fails for non-newlines', function () {
+    return parse(strs.eol(), '').then(reject, function (e) {
+      assert.match(e.message, /expected end of line/)
+    }).then(function () {
+      return parse(strs.eol(), 'hi')
+    }).then(reject, function (e) {
+      assert.match(e.message, /expected end of line/)
+    })
+  })
 })

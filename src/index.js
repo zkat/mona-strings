@@ -16,7 +16,6 @@ import {
   not,
   or,
   range,
-  sequence,
   skip
 } from '@mona/combinators'
 
@@ -111,16 +110,13 @@ export function noneOf (matches, caseSensitive = true, parser = token()) {
  */
 export function string (matchStr, caseSensitive = true) {
   const str = caseSensitive ? matchStr : matchStr.toLowerCase()
-  return label(sequence(function (s) {
-    let x = s(is(x => {
-      x = caseSensitive ? x : x.toLowerCase()
-      return x === str.charAt(0)
-    }))
-    const xs = str.length > 1
-      ? s(string(str.slice(1), caseSensitive))
-      : ''
-    return value(x + xs)
-  }), `string matching {${matchStr}}`)
+  return label(
+    bind(
+      is(x => (caseSensitive ? x : x.toLowerCase()) === str.charAt(0)),
+      x => str.length > 1
+      ? bind(string(str.slice(1), caseSensitive), xs => value(x + xs))
+      : value(x)),
+    `string matching {${matchStr}}`)
 }
 
 /**
